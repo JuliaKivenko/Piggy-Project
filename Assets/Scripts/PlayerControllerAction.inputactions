@@ -1,0 +1,33 @@
+{
+    "name": "PlayerControllerAction",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "da4275ce-fcc1-42e2-942f-f262fedc6d62",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "PassThrough",
+                    "id": "aa9b7373-4e0a-4ac0-a771-395461c4d062",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8148bc0a-dbbe-4d5e-a3f6-2494d3478cd8",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
