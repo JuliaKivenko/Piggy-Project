@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] CharacterController characterController;
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] PlayerVisualRotator playerRotator;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float staminaDepletionRate;
 
@@ -47,7 +48,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+        //Dash should only be active when player is moving
+#if UNITY_EDITOR
         Dash(playerControllerAcion.Player.Dash.ReadValue<float>());
+#endif
     }
 
     private void Move()
@@ -59,13 +63,16 @@ public class PlayerController : MonoBehaviour
         Vector3 toConvert = new Vector3(movemementInput.x, 0, movemementInput.y);
         Vector3 move = IsoVectorConvert(toConvert);
 
+        //Rotate the visual in the direction player is walking
+        playerRotator.Rotate(move);
+
         //Move character
         characterController.Move(move * Time.deltaTime * currentSpeed);
     }
 
     private Vector3 IsoVectorConvert(Vector3 vector)
     {
-        Quaternion rotaton = Quaternion.Euler(0, 45, 0);
+        Quaternion rotaton = Quaternion.Euler(0, -135, 0);
         Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotaton);
         Vector3 result = isoMatrix.MultiplyPoint3x4(vector);
         return result;
