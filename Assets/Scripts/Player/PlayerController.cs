@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControllerAction playerControllerAcion;
     private float dashSpeed;
     private float tiredSpeed;
+    private float input;
     private Coroutine replenishStaminaRoutine;
     [Header("Debug")]
     [SerializeField] private float currentSpeed;
@@ -45,12 +46,17 @@ public class PlayerController : MonoBehaviour
         playerControllerAcion.Disable();
     }
 
+    public void SetScreenInput(float input) => this.input = input;
+
     private void Update()
     {
         Move();
         //Dash should only be active when player is moving
 #if UNITY_EDITOR
         Dash(playerControllerAcion.Player.Dash.ReadValue<float>());
+#endif
+#if PLATFORM_ANDROID
+        Dash(input);
 #endif
     }
 
@@ -121,6 +127,10 @@ public class PlayerController : MonoBehaviour
 
     //For UI
     public float StaminaReplenishProgress => playerStats.stamina / currentStamina;
+
+    //For debug
+    public string getCurrentSpeed => currentSpeed.ToString();
+    public string getCurrentStamina => currentStamina.ToString();
 
 
 
