@@ -28,11 +28,11 @@ public class @PlayerControllerAction : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Dash"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""5fc6db68-cf38-47a2-bfa1-d35bc0a27af2"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -51,7 +51,7 @@ public class @PlayerControllerAction : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""d43b5b69-170a-4c35-a514-8dad8986fc09"",
                     ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Press,Press(behavior=1)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",

@@ -376,14 +376,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 4
+  - eventID: 0
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1202315534}
           m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
           m_MethodName: Dash
-          m_Mode: 1
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1202315534}
+          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+          m_MethodName: Dash
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1122,7 +1138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.28359604, y: 0.36420813, z: -0.11746933, w: 0.8792763}
+  m_LocalRotation: {x: 0.28359604, y: 0.36420813, z: -0.11746935, w: 0.8792763}
   m_LocalPosition: {x: -10, y: 11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1222,7 +1238,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095700883}
-  m_LocalRotation: {x: 0.28359604, y: 0.36420813, z: -0.11746933, w: 0.8792763}
+  m_LocalRotation: {x: 0.28359604, y: 0.36420813, z: -0.11746935, w: 0.8792763}
   m_LocalPosition: {x: -10, y: 11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1242,6 +1258,7 @@ GameObject:
   - component: {fileID: 1202315537}
   - component: {fileID: 1202315536}
   - component: {fileID: 1202315538}
+  - component: {fileID: 1202315539}
   - component: {fileID: 1202315534}
   - component: {fileID: 1202315535}
   m_Layer: 3
@@ -1279,9 +1296,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 1202315538}
+  playerStats: {fileID: 1202315539}
   walkSpeed: 10
-  dashSpeedMultiplier: 2
+  staminaDepletionRate: 3
   currentSpeed: 0
+  currentStamina: 0
 --- !u!114 &1202315535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,19 +1331,7 @@ MonoBehaviour:
     m_ActionId: aa9b7373-4e0a-4ac0-a771-395461c4d062
     m_ActionName: Player/Move
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1202315534}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 5fc6db68-cf38-47a2-bfa1-d35bc0a27af2
     m_ActionName: Player/Dash[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1380,6 +1387,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.69, z: 0}
+--- !u!114 &1202315539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202315532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3422b550c29827a42aaefa1df9872e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dashMultiplier: 2
+  _stamina: 10
+  _staminaRechargeSpeed: 1
 --- !u!1 &1468463011
 GameObject:
   m_ObjectHideFlags: 0
