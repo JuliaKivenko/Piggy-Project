@@ -7,11 +7,15 @@ public class HUDController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI staminaText;
     [SerializeField] private TextMeshProUGUI speedText;
-    [SerializeField] private PlayerController playerController;
+
+    [Header("Resources")]
+    [SerializeField] private List<TextMeshProUGUI> resourcesTexts;
 
     private void Update()
     {
-        staminaText.text = $"Stamina: {playerController.getCurrentStamina}";
-        speedText.text = $"Speed: {playerController.getCurrentSpeed}";
+        staminaText.text = $"Stamina: {PlayerController.instance.getCurrentStamina}";
+        speedText.text = $"Speed: {PlayerController.instance.getCurrentSpeed}";
+
+        resourcesTexts[0].text = $"Truffles: {ResourceManager.GetResourceAmount(ResourceType.Truffle)}";
     }
 }
