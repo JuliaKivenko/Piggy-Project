@@ -16,9 +16,9 @@ public class PlayerCollisionDetector : MonoBehaviour
         Debug.DrawRay(raycastStartPos.position, raycastStartPos.forward * maxRaycastDistance, Color.red);
         if (hitInfo.collider == null)
             return;
-        if (hitInfo.collider.TryGetComponent<ResourceNode>(out ResourceNode resourceNode))
+        if (hitInfo.collider.TryGetComponent<IHarvestable>(out IHarvestable harvestable))
         {
-            resourceNode.Gather();
+            harvestable.Harvest();
         }
 
     }

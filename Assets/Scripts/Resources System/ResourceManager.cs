@@ -14,10 +14,17 @@ public static class ResourceManager
     public delegate void OnResourceChange();
     public static event OnResourceChange onResourceChange;
 
-    public static Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>()
+    public static Dictionary<ResourceType, int> resources;
+
+    public static void Init()
     {
-        { ResourceType.Truffle, 0},
-    };
+        resources = new Dictionary<ResourceType, int>();
+
+        foreach (ResourceType resourceType in Enum.GetValues(typeof(ResourceType)))
+        {
+            resources.Add(resourceType, 0);
+        }
+    }
 
     public static void ChangeResourceAmount(ResourceType type, int amountToAdd)
     {

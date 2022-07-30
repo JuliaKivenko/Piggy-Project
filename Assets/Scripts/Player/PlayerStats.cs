@@ -12,4 +12,7 @@ public class PlayerStats : MonoBehaviour
 
     public float staminaRechargeSpeed { get { return _staminaRechargeSpeed; } set { } }
     [SerializeField] private float _staminaRechargeSpeed;
+
+    public float diggingSpeed { get { return _diggingSpeed; } set { } }
+    [SerializeField] private float _diggingSpeed;
 }

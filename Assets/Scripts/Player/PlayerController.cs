@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+
+    public bool isDashing { get { return currentSpeed >= dashSpeed; } set { } }
+    public PlayerStats playerStats;
     [SerializeField] CharacterController characterController;
-    [SerializeField] PlayerStats playerStats;
     [SerializeField] PlayerVisualRotator playerRotator;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float staminaDepletionRate;

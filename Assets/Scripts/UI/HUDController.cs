@@ -11,11 +11,26 @@ public class HUDController : MonoBehaviour
     [Header("Resources")]
     [SerializeField] private List<TextMeshProUGUI> resourcesTexts;
 
+    private void Start() => UpdateResourceTexts();
+    private void OnEnable() => ResourceManager.onResourceChange += UpdateResourceTexts;
+    private void OnDisable() => ResourceManager.onResourceChange -= UpdateResourceTexts;
+
     private void Update()
     {
         staminaText.text = $"Stamina: {PlayerController.instance.getCurrentStamina}";
         speedText.text = $"Speed: {PlayerController.instance.getCurrentSpeed}";
+    }
 
-        resourcesTexts[0].text = $"Truffles: {ResourceManager.GetResourceAmount(ResourceType.Truffle)}";
+    private void UpdateResourceTexts()
+    {
+        int y = 0;
+        foreach (var item in ResourceManager.resources)
+        {
+            if (y >= resourcesTexts.Count)
+                break;
+            resourcesTexts[y].text = $"{item.Key}: {item.Value}";
+            y++;
+        }
+
     }
 }

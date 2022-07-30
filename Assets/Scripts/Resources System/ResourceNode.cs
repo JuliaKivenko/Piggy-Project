@@ -8,8 +8,15 @@ public class ResourceNode : MonoBehaviour
     [SerializeField] private int maxDropAmount;
     [SerializeField] private float replenishTime;
     [SerializeField] private GameObject resourceVisual;
+    [SerializeField] private Component harvestingMethod;
 
+    private IHarvestable harvestable;
     private bool isReplenished = true;
+
+    private void Start()
+    {
+        harvestable = GetComponent<IHarvestable>();
+    }
 
     public void Gather()
     {
@@ -19,7 +26,7 @@ public class ResourceNode : MonoBehaviour
         //Calculate a random number of resource to drop
         int amountToDrop = Random.Range(1, maxDropAmount + 1);
 
-        //Add thos resources to the resource manager
+        //Add this resources to the resource manager
         ResourceManager.ChangeResourceAmount(resourceType, amountToDrop);
 
         //mark resource as depleted, start timer on when it can be replanished
@@ -33,4 +40,6 @@ public class ResourceNode : MonoBehaviour
         resourceVisual.SetActive(true);
         isReplenished = true;
     }
+
+    public bool IsReplenished() => isReplenished;
 }
