@@ -14,7 +14,6 @@ public class Diggable : MonoBehaviour, IHarvestable
         if (!resourceNode.IsReplenished())
             return;
         currentDiggingTime += PlayerController.instance.playerStats.diggingSpeed * Time.deltaTime;
-        Debug.Log(currentDiggingTime);
         if (currentDiggingTime >= diggingTime)
         {
             resourceNode.Gather();
