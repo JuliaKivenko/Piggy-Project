@@ -21,18 +21,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_PiggyNose
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 208cb4bbb0a8a144d91ac236d57cf85a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_83433f335b3845b5b02cb5ea33a58de3:
+        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -90,6 +93,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_00749d9d23e34f6ca053b336af15211c: 3.5
+    - Vector1_01a26f0ae80a4b89ae20ed99ddab701c: 2
+    - Vector1_10e3d937b7e646daa0c8a014910d4b23: 0.5
+    - Vector1_6750091cdc9d4f9083aaf20f62efbe41: 0.08
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -119,6 +126,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_2fb0af18dcb54b30ba9a9f66763b3b89: {r: 0.354, g: 0.0022264135, b: 0.0022264135, a: 1}
+    - Color_ac25216aa6de4ebe8eda5f95be3a4e61: {r: 0.4245283, g: 0.1742168, b: 0.24084653, a: 0}
     - _BaseColor: {r: 0.99215686, g: 0.44705883, b: 0.5921569, a: 1}
     - _Color: {r: 0.99215686, g: 0.44705883, b: 0.5921569, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
