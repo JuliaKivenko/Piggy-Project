@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2ea0fde183b124786624d0976ca121, type: 3}
+  m_Name: ResourceIconsSettings
+  m_EditorClassIdentifier: 
+  resourceIcons:
+  - resourceType: 0
+    iconName: <sprite=0>
+  - resourceType: 1
+    iconName: <sprite=1>
+  - resourceType: 2
+    iconName: <sprite=2>

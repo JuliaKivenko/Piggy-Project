@@ -4,13 +4,12 @@ using UnityEngine;
 
 public static class ShopManager
 {
-    public static void SellResources(ResourceType resourceType)
+    public static void SellResources(ResourceType resourceType, int amountToSell, int exchangeRate)
     {
         if (resourceType == ResourceType.Gold)
             return;
 
-        int amountSold = ResourceManager.resources[resourceType];
-        ResourceManager.ChangeResourceAmount(resourceType, -amountSold);
-        ResourceManager.ChangeResourceAmount(ResourceType.Gold, amountSold);
+        ResourceManager.ChangeResourceAmount(resourceType, -amountToSell);
+        ResourceManager.ChangeResourceAmount(ResourceType.Gold, amountToSell / exchangeRate);
     }
 }
