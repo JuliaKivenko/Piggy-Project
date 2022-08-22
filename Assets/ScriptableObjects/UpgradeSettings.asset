@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3da9ef6c025f764b8e1ff1fc4a5f367, type: 3}
+  m_Name: UpgradeSettings
+  m_EditorClassIdentifier: 
+  upgrades:
+  - name: Run Speed
+    description: Scare enemies and headbutt
+    type: 0
+    visual: {fileID: 0}
+    price: 2
+    priceMultiplier: 2
+    level: 1
+    statMultiplier: 2
+  - name: Stamina
+    description: Run for longer before getting tired
+    type: 1
+    visual: {fileID: 0}
+    price: 56
+    priceMultiplier: 2
+    level: 1
+    statMultiplier: 2
+  - name: Resting
+    description: Piggy rests faster after it gets tired.
+    type: 2
+    visual: {fileID: 0}
+    price: 34
+    priceMultiplier: 2
+    level: 1
+    statMultiplier: 3
+  - name: Tough Nose
+    description: Toughen your nose to dig faster
+    type: 3
+    visual: {fileID: 0}
+    price: 78
+    priceMultiplier: 2
+    level: 1
+    statMultiplier: 2

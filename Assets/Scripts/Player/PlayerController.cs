@@ -36,8 +36,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+
 
         playerControllerAcion = new PlayerControllerAction();
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
         playerControllerAcion.Enable();
     }
 
-    private void OnDisable()
+    private void OnApplicationQuit()
     {
         playerControllerAcion.Disable();
     }

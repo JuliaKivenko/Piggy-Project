@@ -8,6 +8,8 @@ public enum ResourceType
     Truffle,
     Acorn,
     Gold,
+    Melon,
+    Apple,
 }
 
 public static class ResourceManager

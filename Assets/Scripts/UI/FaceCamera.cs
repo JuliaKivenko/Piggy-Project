@@ -8,9 +8,12 @@ public class FaceCamera : MonoBehaviour
 
     void Update()
     {
-        if (lookAt)
+        /*if (lookAt)
         {
             transform.LookAt(2 * transform.position - lookAt.position);
-        }
+        }*/
+
+        if (lookAt)
+            transform.rotation = Quaternion.LookRotation(transform.position - lookAt.position);
     }
 }
