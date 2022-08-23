@@ -39,16 +39,14 @@ public class ResourceNode : MonoBehaviour
         {
             Vector3 randomPosition = Random.insideUnitSphere * dropRadius + new Vector3(transform.position.x, 0, transform.position.z);
             Vector3 spawnPosition = new Vector3(randomPosition.x, height, randomPosition.z);
+            //TODO: make this less expensive
             GameObject resourceInstance = Instantiate(resourceVisual, transform.position, Quaternion.identity);
-            //StartCoroutine(AnimateResourceDrop(resourceInstance, transform.position, spawnPosition));
             Magnetisable magnetisable = resourceInstance.AddComponent<Magnetisable>();
-            magnetisable.Init(dropAnimationSpeed, transform.position, spawnPosition, trajectoryHeight);
+
+            magnetisable.Init(resourceType, dropAnimationSpeed, transform.position, spawnPosition, trajectoryHeight);
         }
 
-        //Add this resources to the resource manager
-        ResourceManager.ChangeResourceAmount(resourceType, amountToDrop);
-
-        //mark resource as depleted, start timer on when it can be replanished
+        //mark resource as depleted, start timer on when it can be replenished
         isReplenished = false;
         resourceVisual.SetActive(false);
         Invoke(nameof(ReplenishResource), replenishTime);

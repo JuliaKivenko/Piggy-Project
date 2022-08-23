@@ -6,7 +6,7 @@ public class Magnetisable : MonoBehaviour
 {
     private bool enableBehaviour = false;
     private float magnetThresholdDistance = 3;
-    private float animationThresholdDistance = 0.1f;
+    private float animationThresholdDistance = 0.3f;
     private float flySpeed = 20;
     private bool isMagnetised = true;
     private float dropAnimationSpeed;
@@ -16,13 +16,16 @@ public class Magnetisable : MonoBehaviour
     private float cTime = 0;
     private bool isAnimationDone = false;
 
-    public void Init(float animationSpeed, Vector3 start, Vector3 end, float height)
+    private ResourceType type;
+
+    public void Init(ResourceType resourceType, float animationSpeed, Vector3 start, Vector3 end, float height)
     {
         dropAnimationSpeed = animationSpeed;
         startPos = start;
         endPos = end;
         trajectoryHeight = height;
         enableBehaviour = true;
+        type = resourceType;
     }
 
     void Update()
@@ -73,6 +76,10 @@ public class Magnetisable : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, PlayerController.instance.transform.position, flySpeed * Time.deltaTime);
             yield return null;
         }
+
+        //Add this resources to the resource manager
+        ResourceManager.ChangeResourceAmount(type, 1);
+
         Destroy(gameObject);
     }
 

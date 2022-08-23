@@ -104,9 +104,11 @@ public class PlayerController : MonoBehaviour
         if (press > 0f && moving)
         {
             //If player is trying to dash, but does not have stamina, set speed to slow
-            if (currentStamina <= 0f)
+            if (currentStamina <= 0.2f)
             {
                 currentSpeed = tiredSpeed;
+                if (replenishStaminaRoutine != null)
+                    StopCoroutine(replenishStaminaRoutine);
                 return;
             }
 
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour
             currentStamina -= staminaDepletionRate * Time.deltaTime;
         }
 
-        //Set to normal speed if player is not holding dash, start replanishing stamina
+        //Set to normal speed if player is not holding dash, start replenishing stamina
         bool coroutineStarted = false;
         if (press <= 0f)
         {

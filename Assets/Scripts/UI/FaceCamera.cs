@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    [SerializeField] Transform lookAt;
+    private Camera mainCamera;
 
+    private void Start() => mainCamera = Camera.main;
     void Update()
     {
-        /*if (lookAt)
-        {
-            transform.LookAt(2 * transform.position - lookAt.position);
-        }*/
-
-        if (lookAt)
-            transform.rotation = Quaternion.LookRotation(transform.position - lookAt.position);
+        transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.back);
+        this.transform.Rotate(0, 180, 0);
     }
 }
