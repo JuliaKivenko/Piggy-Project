@@ -31,7 +31,18 @@ public static class ResourceManager
 
     public static void ChangeResourceAmount(ResourceType type, int amountToAdd)
     {
-        resources[type] += amountToAdd;
+
+        if (resources[type] + amountToAdd < 0)
+        {
+            if (resources[type] == 0)
+                return;
+
+            resources[type] -= (resources[type] + amountToAdd) - amountToAdd;
+        }
+        else
+        {
+            resources[type] += amountToAdd;
+        }
         onResourceChange?.Invoke();
     }
 
