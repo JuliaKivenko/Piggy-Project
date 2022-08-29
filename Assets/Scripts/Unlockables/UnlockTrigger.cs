@@ -10,29 +10,17 @@ public class UnlockCondition
     public int requiredAmount;
     public bool isConditionFullfilled;
 
-    public delegate void OnCurrentAmountChange();
-    public static event OnCurrentAmountChange onCurrentAmountChange;
-
-    public void IncreaseCurrentAmount()
-    {
-        currentAmount += 1;
-        onCurrentAmountChange?.Invoke();
-    }
-
 }
 
 public class UnlockTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject unlockToTriggerObject;
     [SerializeField] private float yOffsetUI;
-
     public List<UnlockCondition> conditionsToUnlock;
 
     private IUnlockableElement unlockToTrigger;
-    private Coroutine resourcesDepleteRoutine;
-
     private bool isUnlocked = false;
-    private bool isInTriggerArea = false;
+
 
     public delegate void OnUnlockableActive(Transform startPos, float yOffset, UnlockTrigger unlockTrigger);
     public static event OnUnlockableActive onUnlockableActive;
@@ -45,12 +33,6 @@ public class UnlockTrigger : MonoBehaviour
         unlockToTrigger = unlockToTriggerObject.GetComponent<IUnlockableElement>();
     }
 
-    private void Update()
-    {
-        if (CheckForUnlock() && resourcesDepleteRoutine != null)
-            StopAllCoroutines();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -58,15 +40,12 @@ public class UnlockTrigger : MonoBehaviour
             if (isUnlocked)
                 return;
 
+            TakeResources();
+
             if (!CheckForUnlock())
                 onUnlockableActive?.Invoke(transform, yOffsetUI, this);
-
-            foreach (var element in conditionsToUnlock)
-            {
-                if (ResourceManager.GetResourceAmount(element.type) > 0)
-                    StartCoroutine(TakeResources(element));
-            }
         }
+        //TODO: resource gets taken away one by one    
     }
 
     private void OnTriggerExit(Collider other)
@@ -75,21 +54,30 @@ public class UnlockTrigger : MonoBehaviour
         {
             if (isUnlocked)
                 return;
-
-            StopAllCoroutines();
             onUnlockableInactive?.Invoke();
         }
     }
 
-    private IEnumerator TakeResources(UnlockCondition element)
+    private void TakeResources()
     {
-        while (element.currentAmount < element.requiredAmount && ResourceManager.GetResourceAmount(element.type) > 0)
+        foreach (var element in conditionsToUnlock)
         {
-            ResourceManager.ChangeResourceAmount(element.type, -1);
-            element.IncreaseCurrentAmount();
-            yield return new WaitForEndOfFrame();
+            if (ResourceManager.GetResourceAmount(element.type) >= element.requiredAmount - element.currentAmount)
+            {
+                ResourceManager.ChangeResourceAmount(element.type, -(element.requiredAmount - element.currentAmount));
+                element.currentAmount += (element.requiredAmount - element.currentAmount);
+            }
+            else
+            {
+                int resourceToTake = ResourceManager.GetResourceAmount(element.type);
+                ResourceManager.ChangeResourceAmount(element.type, -resourceToTake);
+                element.currentAmount += resourceToTake;
+            }
+
+            if (element.currentAmount == element.requiredAmount)
+                element.isConditionFullfilled = true;
         }
-        element.isConditionFullfilled = true;
+
     }
 
     private bool CheckForUnlock()

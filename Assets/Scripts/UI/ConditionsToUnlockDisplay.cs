@@ -19,13 +19,11 @@ public class ConditionsToUnlockDisplay : MonoBehaviour
     {
         UnlockTrigger.onUnlockableActive -= SetUpPosition;
         UnlockTrigger.onUnlockableInactive += HideUI;
-        UnlockCondition.onCurrentAmountChange += DisplayConditions;
     }
     private void OnDisable()
     {
         UnlockTrigger.onUnlockableActive += SetUpPosition;
         UnlockTrigger.onUnlockableInactive -= HideUI;
-        UnlockCondition.onCurrentAmountChange -= DisplayConditions;
     }
 
     private void SetUpPosition(Transform pos, float yOffset, UnlockTrigger trigger)
@@ -44,7 +42,7 @@ public class ConditionsToUnlockDisplay : MonoBehaviour
         {
             conditionsTexts[i].gameObject.SetActive(false);
         }
-
+        
         for (int i = 0; i < unlockTrigger.conditionsToUnlock.Count; i++)
         {
             UnlockCondition condition = unlockTrigger.conditionsToUnlock[i];
